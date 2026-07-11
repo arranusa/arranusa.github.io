@@ -16,7 +16,7 @@
 
 :root {
   --navy-dark: #020617;
-  --navy-card: rgba(255, 255, 255, 0.03);
+  --navy-card: rgb(255 255 255 / 0);
   --navy-light: rgba(255, 255, 255, 0.08);
   --gold-accent: #38bdf8;
   --gold-muted: #34d399;
@@ -108,8 +108,8 @@
 
 /* Adjust frosted glass components */
 :root.theme-light .glass-header {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border-color: rgba(15, 23, 42, 0.1) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
 }
 :root.theme-light .glass-card {
   box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08) !important;
@@ -134,10 +134,10 @@ body {
 }
 
 .glass-header {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(2, 6, 23, 0.75);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--navy-light);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
