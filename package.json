@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build && shx cp -r assets dist/",
+    "build": "vite build && shx cp -r assets dist/ && shx touch dist/.nojekyll",
     "preview": "vite preview",
     "clean": "shx rm -rf dist server.js",
     "lint": "tsc --noEmit",
