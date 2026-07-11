@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Mail, Phone, Code2, ShieldCheck, Terminal, Award, BookOpen, Cpu, Zap, Layers, Trophy, Activity, Heart, Smile } from 'lucide-react';
+import {
+  MapPin, Mail, Phone, Code2, ShieldCheck, Terminal, Award, BookOpen, Cpu, Zap, Layers, Trophy, Activity, Heart, Smile,
+  Briefcase
+} from 'lucide-react';
 import { personalInfo } from '../data';
 import { useLanguage } from '../LanguageContext';
 
@@ -178,7 +181,7 @@ export default function AboutSection() {
                 {/* Header info */}
                 <div className="flex justify-between items-start z-10">
                   <div className="font-mono text-[10px] text-blue-400 uppercase tracking-widest bg-white/5 backdrop-blur-md px-3 py-1 rounded-xl border border-white/10">
-                    {language === 'en' ? 'Work-Life Balance' : 'Keseimbangan Hidup'}
+                    Daily Activity
                   </div>
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
@@ -239,7 +242,7 @@ export default function AboutSection() {
                   >
                     <Trophy className="w-3 h-3 text-blue-400" />
                     <span className="font-mono text-[8px] text-slate-200 font-semibold">
-                      {language === 'en' ? 'Billiards' : 'Biliar'}
+                      Billiards
                     </span>
                   </motion.div>
 
@@ -249,9 +252,9 @@ export default function AboutSection() {
                     transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                     className="absolute top-2 right-2 sm:right-4 z-30 bg-slate-950/90 border border-emerald-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Activity className="w-3 h-3 text-emerald-400" />
+                    <Heart className="w-3 h-3 text-emerald-400" />
                     <span className="font-mono text-[8px] text-slate-200 font-semibold">
-                      {language === 'en' ? 'Swimming' : 'Renang'}
+                      {language === 'en' ? 'Swimming' : 'Swimming'}
                     </span>
                   </motion.div>
 
@@ -261,9 +264,9 @@ export default function AboutSection() {
                     transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
                     className="absolute bottom-2 left-2 sm:left-4 z-30 bg-slate-950/90 border border-purple-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Heart className="w-3 h-3 text-purple-400" />
+                    <Activity className="w-3 h-3 text-purple-400" />
                     <span className="font-mono text-[8px] text-slate-200 font-semibold">
-                      {language === 'en' ? 'Gym / Fitness' : 'Fitness'}
+                      Gym
                     </span>
                   </motion.div>
 
@@ -273,9 +276,9 @@ export default function AboutSection() {
                     transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
                     className="absolute bottom-3 right-2 sm:right-4 z-30 bg-slate-950/90 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Smile className="w-3 h-3 text-amber-400" />
+                    <Briefcase className="w-3 h-3 text-amber-400" />
                     <span className="font-mono text-[8px] text-slate-200 font-semibold">
-                      {language === 'en' ? 'Family Man' : 'Keluarga'}
+                      Working
                     </span>
                   </motion.div>
                 </div>
