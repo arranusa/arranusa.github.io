@@ -25,7 +25,7 @@
 
 :root.theme-light {
   --navy-dark: #f1f5f9; /* Premium light slate background */
-  --navy-card: rgba(255, 255, 255, 0.85); /* Smooth glossy white card base */
+  --navy-card: rgb(255 255 255); /* Smooth glossy white card base */
   --navy-light: rgba(15, 23, 42, 0.08); /* Soft grey border */
   --gold-accent: #0284c7; /* Sky blue 600 - high-contrast blue */
   --gold-muted: #16a34a; /* Emerald 600 - high-contrast green */
@@ -108,7 +108,7 @@
 
 /* Adjust frosted glass components */
 :root.theme-light .glass-header {
-  background: rgba(255, 255, 255, 0.92) !important;
+  background: rgb(255 255 255 / 0.97) !important;
   border-color: rgba(15, 23, 42, 0.12) !important;
 }
 :root.theme-light .glass-card {
@@ -134,7 +134,7 @@ body {
 }
 
 .glass-header {
-  background: rgba(2, 6, 23, 0.75);
+  background: rgb(2 6 23 / 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.12);

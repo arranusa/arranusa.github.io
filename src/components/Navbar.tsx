@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Code2, Download, Globe, Sparkles, Moon, Sun } from 'lucide-react';
-import { personalInfo } from '../data';
 import { useLanguage } from '../LanguageContext';
 import { useTheme } from '../ThemeContext';
 
@@ -89,8 +88,8 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
       {/* Visual tooltip */}
       <span className="absolute top-12 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-all duration-200 bg-slate-900 text-[10px] font-mono text-white px-2.5 py-1 rounded-md whitespace-nowrap border border-white/10 shadow-xl pointer-events-none z-50">
         {theme === 'dark' 
-          ? (language === 'en' ? '🌙 Dark Mode active (Click for Light)' : '🌙 Mode Gelap (Klik untuk Terang)') 
-          : (language === 'en' ? '☀️ Light Mode active (Click for Dark)' : '☀️ Mode Terang (Klik untuk Gelap)')}
+          ? (language === 'en' ? '🌙 Light Mode' : '🌙 Mode Terang')
+          : (language === 'en' ? '☀️ Dark Mode' : '☀️ Mode Gelap')}
       </span>
     </button>
   );
