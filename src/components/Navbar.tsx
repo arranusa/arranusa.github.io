@@ -88,8 +88,8 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
       {/* Visual tooltip */}
       <span className="absolute top-12 left-1/2 -translate-x-1/2 scale-0 group-hover:scale-100 transition-all duration-200 bg-slate-900 text-[10px] font-mono text-white px-2.5 py-1 rounded-md whitespace-nowrap border border-white/10 shadow-xl pointer-events-none z-50">
         {theme === 'dark' 
-          ? (language === 'en' ? '🌙 Light Mode' : '🌙 Mode Terang')
-          : (language === 'en' ? '☀️ Dark Mode' : '☀️ Mode Gelap')}
+          ? (language === 'en' ? 'Light Mode' : 'Mode Terang')
+          : (language === 'en' ? 'Dark Mode' : 'Mode Gelap')}
       </span>
     </button>
   );
