@@ -6,7 +6,7 @@ export const personalInfo = {
   alias: 'A|B',
   email: 'arranusa@gmail.com',
   phone: '085701001654',
-  location: 'Yogyakarta / Jakarta, Indonesia',
+  location: 'Yogyakarta',
   githubUrl: 'https://github.com/arranusa',
   githubIoUrl: 'https://arranusa.github.io',
   linkedinUrl: 'https://linkedin.com/in/arranusa',

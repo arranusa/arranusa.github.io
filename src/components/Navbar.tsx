@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Code2, Download, Globe, Sparkles, Moon, Sun } from 'lucide-react';
-import { personalInfo } from '../data';
 import { useLanguage } from '../LanguageContext';
 import { useTheme } from '../ThemeContext';
 
@@ -111,8 +110,8 @@ export default function Navbar({ activeSection, setActiveSection }: NavbarProps)
             onClick={() => handleNavClick('about')}
             className="flex items-center space-x-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-500 to-emerald-400 flex items-center justify-center font-display font-black text-white text-sm transition-transform group-hover:scale-105 shadow-lg">
-              AN
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-500 to-blue-950 flex items-center justify-center font-display font-black text-white text-sm transition-transform group-hover:scale-105 shadow-lg">
+              AR
             </div>
             <div>
               <span className="font-display font-extrabold text-white tracking-wider block text-base uppercase">

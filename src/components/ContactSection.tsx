@@ -16,6 +16,17 @@ export default function ContactSection() {
     e.preventDefault();
     if (!name || !email || !message) return;
 
+    // Convert Indonesian phone starting with '0' to country code '62'
+    const cleanPhone = personalInfo.phone.replace(/\D/g, '');
+    const formattedPhone = cleanPhone.startsWith('0') ? '62' + cleanPhone.slice(1) : cleanPhone;
+
+    const formattedText = language === 'en'
+      ? `Hello Arif,\n\nI would like to connect with you from your Portfolio website.\n\n*Name:* ${name}\n*Email:* ${email}${company ? `\n*Company:* ${company}` : ''}\n\n*Message:*\n${message}`
+      : `Halo Arif,\n\nSaya ingin menghubungi Anda dari website Portfolio.\n\n*Nama:* ${name}\n*Email:* ${email}${company ? `\n*Perusahaan:* ${company}` : ''}\n\n*Pesan:*\n${message}`;
+
+    const waUrl = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(formattedText)}`;
+    window.open(waUrl, '_blank');
+
     // Reset Form
     setName('');
     setEmail('');
