@@ -138,9 +138,7 @@ export default function ProjectsSection() {
       case 'core': return language === 'en' ? 'Core Infrastructure' : 'Infrastruktur Inti';
       case 'microservice': return language === 'en' ? 'Microservices' : 'Mikroservis';
       case 'monolith': return language === 'en' ? 'Enterprise Application' : 'Aplikasi Enterprise';
-      case 'library': return language === 'en' ? 'Utility Library' : 'Pustaka Utilitas';
       case 'integration': return language === 'en' ? 'Integration Parser' : 'Parser Integrasi';
-      case 'observability': return language === 'en' ? 'Observability' : 'Observabilitas';
       default: return cat;
     }
   };
