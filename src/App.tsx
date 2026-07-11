@@ -6,7 +6,7 @@ import ExperienceTimeline from './components/ExperienceTimeline';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import { personalInfo, experienceData, skillsData } from './data';
-import { Mail, Phone, MapPin, Linkedin, Github, Award, BookOpen } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 
 export default function App() {
@@ -59,7 +59,7 @@ export default function App() {
               Arif Rahman Bintoro
             </p>
             <p className="text-xs text-slate-text font-mono uppercase tracking-widest">
-              {language === 'en' ? "Languages don't scale, architecture scales." : "Bahasa pemrograman tidak berskala, arsitektur yang berskala."}
+              Languages don't scale, architecture scales.
             </p>
             <div className="w-12 h-0.5 bg-gold-accent/40 mx-auto" />
             <p className="text-[11px] text-slate-500 font-mono">

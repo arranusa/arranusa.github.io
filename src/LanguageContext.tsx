@@ -31,7 +31,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       'nav.contact': 'Kontak',
       'nav.print': 'Cetak CV',
       'about.subtitle': '12+ Tahun Pengalaman Enterprise',
-      'about.principle': 'Bahasa tidak melakukan penskalaan, arsitektur yang melakukan penskalaan.',
+      'about.principle': 'Languages don\'t scale, architecture scales.',
       'about.principle_label': '— Core Engineering Principle',
       'about.education': 'Pendidikan',
       'about.location': 'Lokasi',
