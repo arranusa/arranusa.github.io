@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, FileText, Code2, Download, Globe, Sparkles, Moon, Sun } from 'lucide-react';
+import { personalInfo } from '../data';
 import { useLanguage } from '../LanguageContext';
 import { useTheme } from '../ThemeContext';
 
