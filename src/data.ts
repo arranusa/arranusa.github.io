@@ -605,9 +605,9 @@ export const projectsData: Project[] = [
     },
     techStack: ['Java', 'Quarkus', 'PostgreSQL', 'React', 'Tailwind CSS', 'Forward Chaining'],
     githubUrl: 'https://github.com/arranusa/kids-talent-system',
-    imageUrl: 'robert-collins-lP_FbBkMn1c-unsplash.jpg',
+    imageUrl: '/assets/kts/main.jpg',
     images: [
-      'robert-collins-lP_FbBkMn1c-unsplash.jpg',
+      '/assets/kts/main.jpg',
       '/assets/kts/3.png',
       '/assets/kts/1.png',
       '/assets/kts/0.png',
@@ -666,9 +666,8 @@ export const projectsData: Project[] = [
     },
     techStack: ['Java', 'Quarkus', 'PostgreSQL', 'React', 'Tailwind CSS', 'Docker'],
     githubUrl: 'https://github.com/arranusa/devoic-pos-platform',
-    imageUrl: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/assets/pos/main.jpg',
     images: [
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
       '/assets/pos/2.png',
       '/assets/pos/0.png',
       '/assets/pos/1.png',
@@ -727,14 +726,12 @@ export const projectsData: Project[] = [
     },
     techStack: ['Java 17', 'Spring Boot', 'Kafka MSK', 'PostgreSQL', 'Redis', 'CI/CD'],
     githubUrl: 'https://github.com/arranusa/bmas-banking-platform',
-    imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+    imageUrl: '/assets/bmas/main.jpg',
     images: [
-      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+      '/assets/bmas/main.jpg',
       '/assets/bmas/1.jpeg',
       '/assets/bmas/0.jpeg',
-      '/assets/bmas/2.jpeg',
-      '/assets/bmas/3.jpeg',
-      '/assets/bmas/4.jpeg'
+      '/assets/bmas/3.jpeg'
     ],
     longDescription: {
       en: 'A highly secure, high-performance enterprise banking platform designed for scalable funds transfer, onboarding, and microservice orchestration. Built to meet stringent banking security and regulatory compliance standard practices.',
