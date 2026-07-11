@@ -1,0 +1,242 @@
+import React, { createContext, useContext, useState } from 'react';
+
+export type Language = 'en' | 'id';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [language, setLanguageState] = useState<Language>(() => {
+    const saved = localStorage.getItem('portfolio_lang');
+    return (saved === 'en' || saved === 'id') ? saved : 'id'; // default to ID as original content is mostly Indonesian
+  });
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem('portfolio_lang', lang);
+  };
+
+  const translations: Record<Language, Record<string, string>> = {
+    id: {
+      'nav.about': 'Tentang Saya',
+      'nav.skills': 'Keahlian',
+      'nav.experience': 'Pengalaman',
+      'nav.architecture': 'Arsitektur',
+      'nav.projects': 'Proyek',
+      'nav.contact': 'Kontak',
+      'nav.print': 'Cetak CV',
+      'about.subtitle': '12+ Tahun Pengalaman Enterprise',
+      'about.principle': 'Bahasa tidak melakukan penskalaan, arsitektur yang melakukan penskalaan.',
+      'about.principle_label': '— Core Engineering Principle',
+      'about.education': 'Pendidikan',
+      'about.location': 'Lokasi',
+      'about.email': 'Email',
+      'about.phone': 'Telepon',
+      'about.env': 'LINGKUNGAN',
+      'about.presets': 'PRESET',
+      'about.observability': 'OBSERVABILITAS',
+      'skills.title': 'Keahlian &',
+      'skills.accentTitle': 'Spesialisasi Teknologi',
+      'skills.desc': 'Menguasai ekosistem Java modern dengan fokus utama pada perancangan arsitektur backend yang berkinerja tinggi, aman, dan toleran terhadap kegagalan (fault-tolerant).',
+      'skills.subtitle': 'Menguasai ekosistem Java enterprise modern dengan standar performa, ketahanan (resilience), dan keamanan berskala industri.',
+      'skills.cat.coretechnologies': 'Teknologi Utama / Core',
+      'skills.cat.databasecloud': 'Basis Data & Awan / Cloud',
+      'skills.cat.securityobservability': 'Keamanan & Observabilitas',
+      'skills.inspector.desc': 'Deskripsi Detail',
+      'skills.usage': 'Penerapan Arsitektur',
+      'skills.track': 'Rekam Jejak Proyek',
+      'skills.lang': 'Kemampuan Bahasa',
+      'skills.select_placeholder': 'Pilih salah satu keahlian untuk diinspeksi',
+      'skills.inspector_title': 'TECH SPEC INSPECTOR',
+      'skills.record': 'Rekam Jejak',
+      'skills.empty_inspector': 'Pilih salah satu keahlian di samping untuk melihat analisis teknis detail.',
+      'experience.title': 'Riwayat',
+      'experience.accentTitle': 'Pengalaman Kerja',
+      'experience.desc': 'Perjalanan karir profesional sebagai Backend Developer sejak 2014, berfokus pada industri asuransi jiwa, perbankan, dan solusi enterprise terdistribusi.',
+      'experience.filter_label': 'Saring',
+      'experience.filter_all': 'Semua',
+      'experience.filter_insurance': 'Asuransi',
+      'experience.filter_banking': 'Perbankan',
+      'experience.filter_consultant': 'Konsultan',
+      'experience.responsibilities': 'Tanggung Jawab & Pencapaian',
+      'experience.system_managed': 'Sistem Dikelola',
+      'experience.managed_systems': 'Sistem Dikelola',
+      'experience.empty_filter': 'Tidak ada riwayat kerja yang cocok dengan filter saat ini.',
+      'architecture.badge': 'Interactive Architecture Sandbox',
+      'architecture.title': 'Bagaimana Saya',
+      'architecture.accentTitle': 'Merancang Sistem',
+      'architecture.desc': 'Pilih skenario arsitektur di bawah untuk melihat visualisasi alur data dan rancangan microservices interaktif. Klik setiap komponen (Node) untuk menganalisis spesifikasi teknisnya.',
+      'architecture.canvas_title': 'LIVE ARSITEKTUR KANVAS',
+      'architecture.canvas_hint': '*Klik pada kotak komponen untuk memeriksa detail',
+      'architecture.communication': 'Aliran Komunikasi & Protokol',
+      'architecture.empty_inspector_title': 'Pilih Komponen Arsitektur',
+      'architecture.empty_inspector_desc': 'Klik salah satu kotak komponen (seperti Gateway, Database, Service, atau Kafka) pada bagan diagram di samping untuk memeriksa spesifikasi implementasi backend saya.',
+      'architecture.problem_solved': 'Masalah yang Diatasi',
+      'contact.title': 'Hubungi',
+      'contact.accentTitle': 'Saya',
+      'contact.desc': 'Tertarik untuk berkolaborasi, mendiskusikan arsitektur sistem, atau memiliki peluang karir? Jangan ragu untuk mengirimkan pesan atau hubungi lewat kontak sosial.',
+      'experience.subtitle': 'Perjalanan karir profesional sebagai Backend Developer sejak 2014, berfokus pada industri asuransi jiwa, perbankan, dan solusi enterprise terdistribusi.',
+      'contact.subtitle': 'Tertarik untuk berkolaborasi, mendiskusikan arsitektur sistem, atau memiliki peluang karir? Jangan ragu untuk mengirimkan pesan atau hubungi lewat kontak sosial.',
+      'contact.form_title': 'Kirimkan Pesan Langsung',
+      'contact.name_label': 'Nama Lengkap',
+      'contact.name_placeholder': 'Masukkan nama Anda',
+      'contact.email_label': 'Alamat Email',
+      'contact.email_placeholder': 'contoh@perusahaan.com',
+      'contact.company_placeholder': 'PT Perusahaan Sukses (Opsional)',
+      'contact.message_label': 'Pesan Anda',
+      'contact.message_placeholder': 'Tuliskan detail penawaran kerja sama atau pesan Anda disini...',
+      'contact.send_btn': 'Kirim Pesan',
+      'contact.sending_btn': 'Mengirim...',
+      'contact.social_title': 'Sains & Sosial Network',
+      'contact.social_desc': 'Koneksikan dengan saya melalui LinkedIn profesional atau pantau repositori coding saya di GitHub.',
+      'contact.inbox_title': 'Simulasi Inbox Hub',
+      'contact.inbox_desc': 'Pesan yang dikirimkan di sebelah disimpan secara instan di local storage browser Anda untuk demonstrasi interaktif.',
+      'contact.inbox_count': 'Pesan',
+      'contact.domisili': 'DOMISILI',
+      'contact.domisili_val': 'Yogyakarta, ID',
+      'contact.form_name': 'Nama Lengkap',
+      'contact.form_name_placeholder': 'Masukkan nama Anda',
+      'contact.form_email': 'Alamat Email',
+      'contact.form_company': 'Nama Perusahaan',
+      'contact.form_message': 'Pesan Anda',
+      'contact.form_message_placeholder': 'Tuliskan detail penawaran kerja sama atau pesan Anda disini...',
+      'contact.form_send': 'Kirim Pesan',
+      'contact.form_success_alert': 'Pesan Anda berhasil dikirim!',
+      'contact.domicile_title': 'DOMISILI',
+      'contact.domicile_value': 'Yogyakarta, ID',
+      'contact.social_subtitle': 'Hubungkan dengan saya melalui jaringan profesional atau pantau repositori coding saya di GitHub.',
+      'contact.inbox_subtitle': 'Pesan yang dikirimkan disimpan secara instan di penyimpanan lokal browser Anda untuk demonstrasi interaktif.',
+      'print.personal_details': 'Detail Pribadi',
+      'print.dob': 'Tanggal Lahir',
+      'print.nationality': 'Kewarganegaraan',
+      'print.marriage': 'Status Pernikahan',
+      'print.dob_val': '03 Apr 1989',
+      'print.nationality_val': 'Indonesia',
+      'print.marriage_val': 'Menikah',
+      'footer.quote': 'Languages don\'t scale, architecture scales.',
+      'footer.copyright': 'Dibuat ulang dengan React, Tailwind, dan Motion.',
+    },
+    en: {
+      'nav.about': 'About',
+      'nav.skills': 'Skills',
+      'nav.experience': 'Experience',
+      'nav.architecture': 'Architecture',
+      'nav.projects': 'Projects',
+      'nav.contact': 'Contact',
+      'nav.print': 'Print CV',
+      'about.subtitle': '12+ Years of Enterprise Experience',
+      'about.principle': 'Languages don\'t scale, architecture scales.',
+      'about.principle_label': '— Core Engineering Principle',
+      'about.education': 'Education',
+      'about.location': 'Location',
+      'about.email': 'Email',
+      'about.phone': 'Phone',
+      'about.env': 'ENVIRONMENT',
+      'about.presets': 'PRESETS',
+      'about.observability': 'OBSERVABILITY',
+      'skills.title': 'Skills &',
+      'skills.accentTitle': 'Technology Specialization',
+      'skills.desc': 'Mastering the modern Java ecosystem with a primary focus on designing high-performance, secure, and fault-tolerant backend architectures.',
+      'skills.subtitle': 'Mastering the modern Java enterprise ecosystem with industry-scale performance, resilience, and security standards.',
+      'skills.cat.coretechnologies': 'Core Technologies',
+      'skills.cat.databasecloud': 'Database & Cloud',
+      'skills.cat.securityobservability': 'Security & Observability',
+      'skills.inspector.desc': 'Detailed Description',
+      'skills.usage': 'Architectural Application',
+      'skills.track': 'Project Track Record',
+      'skills.lang': 'Language Proficiency',
+      'skills.select_placeholder': 'Select a skill to inspect',
+      'skills.inspector_title': 'TECH SPEC INSPECTOR',
+      'skills.record': 'Track Record',
+      'skills.empty_inspector': 'Select one of the skills on the left to view detailed technical analysis.',
+      'experience.title': 'Work',
+      'experience.accentTitle': 'Experience History',
+      'experience.desc': 'Professional career path as a Backend Developer since 2014, focusing on life insurance, banking, and distributed enterprise solutions.',
+      'experience.filter_label': 'Filter',
+      'experience.filter_all': 'All',
+      'experience.filter_insurance': 'Insurance',
+      'experience.filter_banking': 'Banking',
+      'experience.filter_consultant': 'Consultant',
+      'experience.responsibilities': 'Responsibilities & Achievements',
+      'experience.system_managed': 'Managed System',
+      'experience.managed_systems': 'Managed Systems',
+      'experience.empty_filter': 'No work history matches the current filter.',
+      'architecture.badge': 'Interactive Architecture Sandbox',
+      'architecture.title': 'How I',
+      'architecture.accentTitle': 'Design Systems',
+      'architecture.desc': 'Select an architecture scenario below to view interactive data flow and microservices layout. Click on any component (Node) to analyze its technical specification.',
+      'architecture.canvas_title': 'LIVE ARCHITECTURE CANVAS',
+      'architecture.canvas_hint': '*Click on component boxes to inspect details',
+      'architecture.communication': 'Communication Flows & Protocols',
+      'architecture.empty_inspector_title': 'Select Architecture Component',
+      'architecture.empty_inspector_desc': 'Click on one of the component boxes (such as Gateway, Database, Service, or Kafka) in the diagram to inspect my backend implementation details.',
+      'architecture.problem_solved': 'Problem Solved',
+      'contact.title': 'Contact',
+      'contact.accentTitle': 'Me',
+      'contact.desc': 'Interested in collaborating, discussing system architecture, or have a career opportunity? Feel free to send a message or reach out via social media.',
+      'experience.subtitle': 'Professional career path as a Backend Developer since 2014, focusing on life insurance, banking, and distributed enterprise solutions.',
+      'contact.subtitle': 'Interested in collaborating, discussing system architecture, or have a career opportunity? Feel free to send a message or reach out via social media.',
+      'contact.form_title': 'Send Direct Message',
+      'contact.name_label': 'Full Name',
+      'contact.name_placeholder': 'Enter your name',
+      'contact.email_label': 'Email Address',
+      'contact.email_placeholder': 'example@company.com',
+      'contact.company_placeholder': 'Company Name (Optional)',
+      'contact.message_label': 'Your Message',
+      'contact.message_placeholder': 'Write your message details or collaboration offer here...',
+      'contact.send_btn': 'Send Message',
+      'contact.sending_btn': 'Sending...',
+      'contact.social_title': 'Science & Social Networks',
+      'contact.social_desc': 'Connect with me through LinkedIn or monitor my coding repositories on GitHub.',
+      'contact.inbox_title': 'Simulated Inbox Hub',
+      'contact.inbox_desc': 'Messages sent on the left are saved instantly in your browser\'s local storage for interactive demonstration.',
+      'contact.inbox_count': 'Messages',
+      'contact.domisili': 'RESIDENCE',
+      'contact.domisili_val': 'Yogyakarta, ID',
+      'contact.form_name': 'Full Name',
+      'contact.form_name_placeholder': 'Enter your name',
+      'contact.form_email': 'Email Address',
+      'contact.form_company': 'Company',
+      'contact.form_message': 'Your Message',
+      'contact.form_message_placeholder': 'Write your message details or collaboration offer here...',
+      'contact.form_send': 'Send Message',
+      'contact.form_success_alert': 'Your message has been sent successfully!',
+      'contact.domicile_title': 'RESIDENCE',
+      'contact.domicile_value': 'Yogyakarta, ID',
+      'contact.social_subtitle': 'Connect with me through professional networks or monitor my code repositories on GitHub.',
+      'contact.inbox_subtitle': 'Messages sent are stored instantly in your browser\'s local storage for interactive demonstration.',
+      'print.personal_details': 'Personal Details',
+      'print.dob': 'Date of Birth',
+      'print.nationality': 'Nationality',
+      'print.marriage': 'Marital Status',
+      'print.dob_val': '03 Apr 1989',
+      'print.nationality_val': 'Indonesian',
+      'print.marriage_val': 'Married',
+      'footer.quote': 'Languages don\'t scale, architecture scales.',
+      'footer.copyright': 'Rebuilt with React, Tailwind, and Motion.',
+    }
+  };
+
+  const t = (key: string): string => {
+    return translations[language][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};

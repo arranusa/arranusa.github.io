@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-navy-dark: var(--navy-dark); /* Dark slate base for frosted glass contrast */
+  --color-navy-card: var(--navy-card); /* Transparent glass card base */
+  --color-navy-light: var(--navy-light); /* Brighter glass base */
+  --color-gold-accent: var(--gold-accent); /* Blue accent matching the frosted glass template */
+  --color-gold-muted: var(--gold-muted); /* Emerald accent */
+  --color-slate-text: var(--slate-text);
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --navy-dark: #020617;
+  --navy-card: rgba(255, 255, 255, 0.03);
+  --navy-light: rgba(255, 255, 255, 0.08);
+  --gold-accent: #38bdf8;
+  --gold-muted: #34d399;
+  --slate-text: #94a3b8;
+}
+
+:root.theme-light {
+  --navy-dark: #f1f5f9; /* Premium light slate background */
+  --navy-card: rgba(255, 255, 255, 0.85); /* Smooth glossy white card base */
+  --navy-light: rgba(15, 23, 42, 0.08); /* Soft grey border */
+  --gold-accent: #0284c7; /* Sky blue 600 - high-contrast blue */
+  --gold-muted: #16a34a; /* Emerald 600 - high-contrast green */
+  --slate-text: #475569; /* Slate 600 text color */
+}
+
+/* Base style adjustments for Light Mode */
+:root.theme-light body {
+  color: #0f172a;
+}
+
+:root.theme-light p {
+  color: #334155;
+}
+
+/* Remap white/light texts to deep high-contrast colors in Light Mode */
+:root.theme-light .text-white {
+  color: #0f172a !important;
+}
+:root.theme-light .text-slate-100,
+:root.theme-light .text-slate-200 {
+  color: #1e293b !important;
+}
+:root.theme-light .text-slate-300 {
+  color: #334155 !important;
+}
+:root.theme-light .text-slate-400 {
+  color: #475569 !important;
+}
+:root.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Adjust transparency elements for visibility in Light Mode */
+:root.theme-light .bg-white\/5 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+:root.theme-light .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+:root.theme-light .border-white\/10,
+:root.theme-light .border-white\/15 {
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+:root.theme-light .bg-slate-900\/60,
+:root.theme-light .bg-slate-950\/60 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+:root.theme-light .bg-slate-950\/40 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
+:root.theme-light .bg-slate-950\/90 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+:root.theme-light .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+:root.theme-light .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+}
+
+/* Override text color utilities to make sure accents stay legible in Light Mode */
+:root.theme-light .text-blue-400 {
+  color: #0284c7 !important;
+}
+:root.theme-light .text-blue-300\/80 {
+  color: #0369a1 !important;
+}
+:root.theme-light .text-emerald-400 {
+  color: #16a34a !important;
+}
+:root.theme-light .text-purple-400,
+:root.theme-light .text-purple-300 {
+  color: #7c3aed !important;
+}
+:root.theme-light .text-amber-400 {
+  color: #d97706 !important;
+}
+
+/* Adjust frosted glass components */
+:root.theme-light .glass-header {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+:root.theme-light .glass-card {
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08) !important;
+}
+
+body {
+  background-color: var(--navy-dark);
+  color: #F8FAFC;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+}
+
+/* Glassmorphism base classes with smooth theme transitions */
+.glass-card {
+  background: var(--navy-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--navy-light);
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--navy-light);
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-accent-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--navy-light);
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy-dark);
+  transition: background-color 0.5s ease;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-accent);
+}
+
+
