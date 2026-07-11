@@ -254,7 +254,7 @@ export const projectsData: Project[] = [
     imageUrl: '/assets/planner/kai_locomotive_1782121105066.jpg',
     images: [
       '/assets/planner/kai_locomotive_1782121105066.jpg',
-      '/assets/planner/0.png',
+      '/assets/planner/0.jpg',
       '/assets/planner/1.png',
       '/assets/planner/2.png',
       '/assets/planner/3.png',
