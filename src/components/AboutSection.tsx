@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Mail, Phone, Code2, ShieldCheck, Terminal, Award, BookOpen, Cpu, Zap, Layers } from 'lucide-react';
+import { MapPin, Mail, Phone, Code2, ShieldCheck, Terminal, Award, BookOpen, Cpu, Zap, Layers, Trophy, Activity, Heart, Smile } from 'lucide-react';
 import { personalInfo } from '../data';
 import { useLanguage } from '../LanguageContext';
 
@@ -17,7 +17,7 @@ export default function AboutSection() {
     {
       icon: <Code2 className="w-6 h-6 text-blue-400" />,
       title: language === 'en' ? 'Scalable Microservices' : 'Microservices Skalabel',
-      desc: language === 'en' 
+      desc: language === 'en'
         ? 'Expertise in decoupling monolithic structures into reliable, distributed systems communicating via Kafka event streaming.'
         : 'Keahlian memisahkan struktur monolith menjadi sistem terdistribusi andal yang berkomunikasi via streaming event Kafka.'
     },
@@ -46,7 +46,7 @@ export default function AboutSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Main Info Columns */}
           <div className="lg:col-span-7 space-y-8">
             <motion.div
@@ -59,14 +59,14 @@ export default function AboutSection() {
                 <Award className="w-3.5 h-3.5 text-blue-400" />
                 <span>{t('about.subtitle')}</span>
               </div>
-              
+
               <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-none">
                 Arif Rahman <br />
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">
                   Bintoro
                 </span>
               </h1>
-              
+
               <h2 className="font-display font-medium text-lg sm:text-xl text-slate-200 tracking-wide font-mono">
                 {personalInfo.title}
               </h2>
@@ -174,11 +174,11 @@ export default function AboutSection() {
               <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-xl rounded-3xl flex flex-col justify-between p-6 overflow-hidden">
                 {/* Simulated Server Console Grid */}
                 <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
-                
+
                 {/* Header info */}
                 <div className="flex justify-between items-start z-10">
                   <div className="font-mono text-[10px] text-blue-400 uppercase tracking-widest bg-white/5 backdrop-blur-md px-3 py-1 rounded-xl border border-white/10">
-                    Active System Engine
+                    {language === 'en' ? 'Work-Life Balance' : 'Keseimbangan Hidup'}
                   </div>
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
@@ -202,9 +202,9 @@ export default function AboutSection() {
                   {/* Decorative orbital rings */}
                   <div className="absolute w-48 h-48 rounded-full border border-dashed border-white/10 animate-[spin_50s_linear_infinite]" />
                   <div className="absolute w-36 h-36 rounded-full border border-double border-white/10 animate-[spin_30s_linear_infinite_reverse]" />
-                  
+
                   {/* Central Profile Photo Container */}
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="relative w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-blue-500 via-purple-500 to-emerald-400 shadow-2xl z-20 overflow-hidden group/avatar"
                   >
@@ -230,45 +230,53 @@ export default function AboutSection() {
                     </div>
                   </motion.div>
 
-                  {/* Floating Technology Orbit Nodes */}
-                  {/* Node 1: Java (Top Left) */}
+                  {/* Floating Lifestyle Orbit Nodes */}
+                  {/* Node 1: Billiards (Top Left) */}
                   <motion.div
                     animate={{ y: [0, -6, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute top-1 left-2 sm:left-4 z-30 bg-slate-950/90 border border-blue-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Code2 className="w-3 h-3 text-blue-400" />
-                    <span className="font-mono text-[8px] text-slate-200 font-semibold">Java</span>
+                    <Trophy className="w-3 h-3 text-blue-400" />
+                    <span className="font-mono text-[8px] text-slate-200 font-semibold">
+                      {language === 'en' ? 'Billiards' : 'Biliar'}
+                    </span>
                   </motion.div>
 
-                  {/* Node 2: Spring Boot (Top Right) */}
+                  {/* Node 2: Swimming (Top Right) */}
                   <motion.div
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                     className="absolute top-2 right-2 sm:right-4 z-30 bg-slate-950/90 border border-emerald-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Cpu className="w-3 h-3 text-emerald-400" />
-                    <span className="font-mono text-[8px] text-slate-200 font-semibold">Spring</span>
+                    <Activity className="w-3 h-3 text-emerald-400" />
+                    <span className="font-mono text-[8px] text-slate-200 font-semibold">
+                      {language === 'en' ? 'Swimming' : 'Renang'}
+                    </span>
                   </motion.div>
 
-                  {/* Node 3: Quarkus (Bottom Left) */}
+                  {/* Node 3: Fitness / Gym (Bottom Left) */}
                   <motion.div
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
                     className="absolute bottom-2 left-2 sm:left-4 z-30 bg-slate-950/90 border border-purple-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Zap className="w-3 h-3 text-purple-400" />
-                    <span className="font-mono text-[8px] text-slate-200 font-semibold">Quarkus</span>
+                    <Heart className="w-3 h-3 text-purple-400" />
+                    <span className="font-mono text-[8px] text-slate-200 font-semibold">
+                      {language === 'en' ? 'Gym / Fitness' : 'Fitness'}
+                    </span>
                   </motion.div>
 
-                  {/* Node 4: Kafka (Bottom Right) */}
+                  {/* Node 4: Family (Bottom Right) */}
                   <motion.div
                     animate={{ y: [0, -7, 0] }}
                     transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
                     className="absolute bottom-3 right-2 sm:right-4 z-30 bg-slate-950/90 border border-amber-500/30 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-lg backdrop-blur-md"
                   >
-                    <Layers className="w-3 h-3 text-amber-400" />
-                    <span className="font-mono text-[8px] text-slate-200 font-semibold">Kafka</span>
+                    <Smile className="w-3 h-3 text-amber-400" />
+                    <span className="font-mono text-[8px] text-slate-200 font-semibold">
+                      {language === 'en' ? 'Family Man' : 'Keluarga'}
+                    </span>
                   </motion.div>
                 </div>
 
@@ -276,15 +284,21 @@ export default function AboutSection() {
                 <div className="space-y-2 z-10 bg-slate-950/60 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 font-mono text-[11px] text-slate-300">
                   <div className="flex justify-between">
                     <span className="text-slate-400">{t('about.env')}:</span>
-                    <span className="text-blue-400 font-semibold">JDK 17 / 21</span>
+                    <span className="text-blue-400 font-semibold">
+                      {language === 'en' ? 'Lead Backend Developer' : 'Lead Backend Developer'}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">{t('about.presets')}:</span>
-                    <span className="text-purple-300">Spring, Quarkus, Kafka</span>
+                    <span className="text-purple-300">
+                      {language === 'en' ? 'Billiards, Swimming, Gym' : 'Biliar, Renang, Fitness'}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-400">{t('about.observability')}:</span>
-                    <span className="text-emerald-400">Datadog Core Enabled</span>
+                    <span className="text-emerald-400">
+                      {language === 'en' ? 'Work-life Balance' : 'Work-life Balance'}
+                    </span>
                   </div>
                 </div>
               </div>

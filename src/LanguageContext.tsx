@@ -13,7 +13,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     const saved = localStorage.getItem('portfolio_lang');
-    return (saved === 'en' || saved === 'id') ? saved : 'en'; // default to EN as original content is mostly Indonesian
+    return (saved === 'en' || saved === 'id') ? saved : 'id'; // default to ID as original content is mostly Indonesian
   });
 
   const setLanguage = (lang: Language) => {
@@ -37,9 +37,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       'about.location': 'Lokasi',
       'about.email': 'Email',
       'about.phone': 'Telepon',
-      'about.env': 'LINGKUNGAN',
-      'about.presets': 'PRESET',
-      'about.observability': 'OBSERVABILITAS',
+      'about.env': 'PEKERJAAN',
+      'about.presets': 'HOBI',
+      'about.observability': 'GAYA HIDUP',
       'skills.title': 'Keahlian &',
       'skills.accentTitle': 'Spesialisasi Teknologi',
       'skills.desc': 'Menguasai ekosistem Java modern dengan fokus utama pada perancangan arsitektur backend yang berkinerja tinggi, aman, dan toleran terhadap kegagalan (fault-tolerant).',
@@ -136,9 +136,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       'about.location': 'Location',
       'about.email': 'Email',
       'about.phone': 'Phone',
-      'about.env': 'ENVIRONMENT',
-      'about.presets': 'PRESETS',
-      'about.observability': 'OBSERVABILITY',
+      'about.env': 'CURRENT WORK',
+      'about.presets': 'HOBBIES',
+      'about.observability': 'LIFESTYLE',
       'skills.title': 'Skills &',
       'skills.accentTitle': 'Technology Specialization',
       'skills.desc': 'Mastering the modern Java ecosystem with a primary focus on designing high-performance, secure, and fault-tolerant backend architectures.',
