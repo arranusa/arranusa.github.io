@@ -8,7 +8,7 @@ Personal portfolio website untuk **Arif Rahman Bintoro**, Lead Backend Developer
 
 ## 🖥️ Preview
 
-![Portfolio Preview](https://arranusa.github.io/og-preview.png)
+![Portfolio Preview](assets/preview.png)
 
 > Kunjungi langsung di: **https://arranusa.github.io**
 >
