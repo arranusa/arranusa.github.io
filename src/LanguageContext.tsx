@@ -2,6 +2,45 @@ import React, { createContext, useContext, useState } from 'react';
 
 export type Language = 'en' | 'id';
 
+interface SavedLanguageData {
+  value: Language;
+  expiry: number;
+}
+
+const STORAGE_KEY = 'portfolio_lang';
+const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+const getSavedLanguage = (): Language | null => {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data: SavedLanguageData = JSON.parse(raw);
+    if (data && (data.value === 'en' || data.value === 'id') && typeof data.expiry === 'number') {
+      if (Date.now() < data.expiry) {
+        return data.value;
+      }
+    }
+    // Expired or corrupted -> clean up
+    sessionStorage.removeItem(STORAGE_KEY);
+    return null;
+  } catch {
+    sessionStorage.removeItem(STORAGE_KEY);
+    return null;
+  }
+};
+
+const saveLanguage = (lang: Language) => {
+  try {
+    const data: SavedLanguageData = {
+      value: lang,
+      expiry: Date.now() + ONE_DAY_MS,
+    };
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch (e) {
+    console.error('Failed to save language to sessionStorage:', e);
+  }
+};
+
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
@@ -12,13 +51,13 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem('portfolio_lang');
-    return (saved === 'en' || saved === 'id') ? saved : 'en'; // default to EN
+    const saved = getSavedLanguage();
+    return saved || 'en'; // default to EN
   });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('portfolio_lang', lang);
+    saveLanguage(lang);
   };
 
   const translations: Record<Language, Record<string, string>> = {
@@ -31,7 +70,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       'nav.contact': 'Kontak',
       'nav.print': 'Cetak CV',
       'about.subtitle': '12+ Tahun Pengalaman Enterprise',
-      'about.principle': 'Languages don\'t scale, architecture scales.',
+      'about.principle': 'Bahasa tidak melakukan penskalaan, arsitektur yang melakukan penskalaan.',
       'about.principle_label': '— Core Engineering Principle',
       'about.education': 'Pendidikan',
       'about.location': 'Lokasi',
@@ -227,9 +266,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
-    </LanguageContext.Provider>
+      <LanguageContext.Provider value={{ language, setLanguage, t }}>
+        {children}
+      </LanguageContext.Provider>
   );
 };
 
