@@ -8,6 +8,47 @@ interface ThemeContextType {
   setTheme: (theme: Theme) => void;
 }
 
+interface SavedThemeData {
+  value: Theme;
+  expiry: number;
+}
+
+const STORAGE_KEY = 'portfolio-theme';
+const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+// Helper to retrieve valid, non-expired theme from sessionStorage
+const getSavedTheme = (): Theme | null => {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data: SavedThemeData = JSON.parse(raw);
+    if (data && (data.value === 'light' || data.value === 'dark') && typeof data.expiry === 'number') {
+      if (Date.now() < data.expiry) {
+        return data.value;
+      }
+    }
+    // Expired or corrupted -> clean up
+    sessionStorage.removeItem(STORAGE_KEY);
+    return null;
+  } catch {
+    sessionStorage.removeItem(STORAGE_KEY);
+    return null;
+  }
+};
+
+// Helper to persist theme into sessionStorage with 1 day expiration timestamp
+const saveTheme = (t: Theme) => {
+  try {
+    const data: SavedThemeData = {
+      value: t,
+      expiry: Date.now() + ONE_DAY_MS,
+    };
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch (e) {
+    console.error('Failed to save theme to sessionStorage:', e);
+  }
+};
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -23,8 +64,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   const [theme, setThemeState] = useState<Theme>(() => {
-    const saved = localStorage.getItem('portfolio-theme');
-    if (saved === 'light' || saved === 'dark') {
+    const saved = getSavedTheme();
+    if (saved) {
       return saved;
     }
     return getThemeByTime();
@@ -41,11 +82,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [theme]);
 
-  // Dynamically update the theme in real-time if the user has not set a manual override
+  // Dynamically update theme in real-time if there is no valid unexpired manual override
   useEffect(() => {
-    const saved = localStorage.getItem('portfolio-theme');
-    if (!saved) {
-      const interval = setInterval(() => {
+    const interval = setInterval(() => {
+      const saved = getSavedTheme();
+      if (!saved) {
         const expectedTheme = getThemeByTime();
         setThemeState((current) => {
           if (current !== expectedTheme) {
@@ -53,28 +94,28 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           }
           return current;
         });
-      }, 30000); // Check every 30 seconds
-      return () => clearInterval(interval);
-    }
+      }
+    }, 30000); // Check every 30 seconds
+    return () => clearInterval(interval);
   }, []);
 
   const toggleTheme = () => {
     setThemeState((prev) => {
       const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('portfolio-theme', next);
+      saveTheme(next);
       return next;
     });
   };
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
-    localStorage.setItem('portfolio-theme', t);
+    saveTheme(t);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
+      <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+        {children}
+      </ThemeContext.Provider>
   );
 }
 
@@ -85,3 +126,4 @@ export function useTheme() {
   }
   return context;
 }
+
